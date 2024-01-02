@@ -1,6 +1,6 @@
 const CheckboxSvg = ({ checked }) => {
   return (
-    <div>
+    <span>
       {checked ? (
         <svg
           class="w-6 h-6 text-gray-800 dark:text-white"
@@ -35,7 +35,7 @@ const CheckboxSvg = ({ checked }) => {
           />
         </svg>
       )}
-    </div>
+    </span>
   );
 };
 

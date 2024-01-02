@@ -1,6 +1,6 @@
 const Header = ({ listName }) => {
   return (
-    <header className="App-header h-24 flex flex-row bg-red-800 pl-10 p-5 space-x-4 grow-0">
+    <header className="App-header h-24 flex flex-row bg-content-bg pl-10 p-5 space-x-4 grow-0">
       <h1 className="text-3xl font-bold underline grow">{listName}</h1>
       <button className="">
         <svg

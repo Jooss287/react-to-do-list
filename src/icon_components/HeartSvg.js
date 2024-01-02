@@ -1,6 +1,6 @@
 const HeartSvg = ({ filled }) => {
   return (
-    <div>
+    <span>
       {filled ? (
         <svg
           class="w-6 h-6 text-gray-800 dark:text-white"
@@ -28,7 +28,7 @@ const HeartSvg = ({ filled }) => {
           />
         </svg>
       )}
-    </div>
+    </span>
   );
 };
 

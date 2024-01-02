@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Menu = () => {
   return (
-    <menu className="Menu w-60 h-screen bg-slate-200 space-y-1 grid p-5">
+    <menu className="Menu w-60 h-screen bg-cream-white space-y-1 grid p-5">
       <p>오늘 할 일</p>
       <p>중요</p>
       <p>계획된 일정</p>
