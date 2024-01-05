@@ -3,46 +3,56 @@ import "./App.css";
 import Header from "./components/TodoHeader";
 import Menu from "./components/Menu";
 import TodoList from "./components/TodoList";
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import TodoFooter from "./components/TodoFooter";
 
 const dummyList = [
   {
-    id: 1,
-    content: "오늘 할 일",
-    isComplete: true,
-    isFaviroites: true,
-  },
-  {
-    id: 2,
-    content: "중요",
-    isComplete: true,
-    isFaviroites: false,
-  },
-  {
-    id: 3,
-    content: "계획된 일정",
-    isComplete: true,
-    isFaviroites: true,
-  },
-  {
-    id: 4,
-    content: "작업",
-    isComplete: true,
-    isFaviroites: false,
-  },
-  {
-    id: 5,
-    content: "새 목록(최하단 위치)",
-    isComplete: false,
-    isFaviroites: true,
+    noteId: 1,
+    noteTitle: "새 목록입니다",
+    todoContent: [
+      {
+        id: 1,
+        content: "오늘 할 일",
+        isComplete: true,
+        isFaviroites: true,
+      },
+      {
+        id: 2,
+        content: "중요",
+        isComplete: true,
+        isFaviroites: false,
+      },
+      {
+        id: 3,
+        content: "계획된 일정",
+        isComplete: true,
+        isFaviroites: true,
+      },
+      {
+        id: 4,
+        content: "작업",
+        isComplete: true,
+        isFaviroites: false,
+      },
+      {
+        id: 5,
+        content: "새 목록(최하단 위치)",
+        isComplete: false,
+        isFaviroites: true,
+      },
+    ],
   },
 ];
+
+const dummyCurrentId = 1;
 
 const reducer = (state, action) => {
   switch (action.type) {
     case "INIT":
       return action.payload;
+    case "ADD_NOTE":
+      return [...state, action.payload];
     case "ADD":
       return [...state, action.payload];
     case "CHANGE_COMPLETE":
@@ -71,6 +81,22 @@ export const TodoListStateContext = React.createContext();
 
 function App() {
   const [data, dispatch] = useReducer(reducer, []);
+  const [currentId, setCurrentId] = useState(1);
+
+  const onAddNote = (noteTitle) => {
+    dispatch({
+      type: "ADD_NOTE",
+      payload: {
+        noteId: data.length + 1,
+        noteTitle,
+        todoContent: [],
+      },
+    });
+  };
+
+  const onChangeNote = (id) => {
+    setCurrentId(id);
+  };
 
   const onAddContent = (content, date) => {
     dispatch({
@@ -104,21 +130,45 @@ function App() {
   };
 
   useEffect(() => {
-    dispatch({ type: "INIT", payload: dummyList });
+    // const localData = localStorage.getItem("todoList");
+    // if (!localData) {
+    //   return;
+    // }
+
+    // const todoList = JSON.parse(localData).sort((a, b) => {
+    //   return a.id - b.id;
+    // });
+    const todoList = dummyList;
+
+    if (todoList.length === 0) {
+      return;
+    }
+
+    setCurrentId(dummyCurrentId);
+    dispatch({
+      type: "INIT",
+      payload: todoList,
+    });
   }, []);
 
   return (
     <TodoListDispatchContext.Provider value={data}>
       <TodoListStateContext.Provider
-        value={{ onAddContent, onChangeComplete, onChangeFaviroites }}
+        value={{
+          onAddNote,
+          onChangeNote,
+          onAddContent,
+          onChangeComplete,
+          onChangeFaviroites,
+        }}
       >
         <BrowserRouter>
           <div className="App bg-slate-100 h-full flex">
             {/* <Routes> */}
-            <Menu />
+            <Menu note={data} />
             <article className="Article h-screen w-full flex flex-col">
               <Header />
-              <TodoList data={data} />
+              <TodoList data={data.find((item) => item.noteId === currentId)} />
               <TodoFooter />
             </article>
             {/* </Routes> */}

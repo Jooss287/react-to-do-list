@@ -92,7 +92,10 @@ const TodoFooter = ({}) => {
             />
           </svg>
         </span>
-        <button className="ml-2rounded bg-indigo-300 w-16" onClick={submitTodo}>
+        <button
+          className="ml-2 rounded bg-indigo-300 w-16"
+          onClick={submitTodo}
+        >
           추가
         </button>
       </div>

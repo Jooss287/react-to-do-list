@@ -8,14 +8,16 @@ const TodoList = ({ data }) => {
   const [completeFilter, setCompleteFilter] = useState(false);
 
   useEffect(() => {
+    if (!data) return;
+
+    const currentData = data.todoContent;
     setNotCompleteTodo(
-      data.filter((it) => {
+      currentData.filter((it) => {
         return !it.isComplete;
       })
     );
-
     setCompleteTodo(
-      data.filter((it) => {
+      currentData.filter((it) => {
         return it.isComplete;
       })
     );
