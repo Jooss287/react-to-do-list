@@ -20,7 +20,6 @@ const Menu = ({ note }) => {
   };
 
   const changeCurrentNote = (id) => {
-    console.log(id);
     onChangeNote(id);
   };
 
