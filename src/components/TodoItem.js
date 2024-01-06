@@ -20,10 +20,10 @@ const TodoItem = ({ id, content, isComplete, isFaviroites }) => {
       <div className="mx-2 cursor-pointer" onClick={onClickComplete}>
         <CheckboxSvg checked={isComplete} />
       </div>
-      <content className="grow pl-2">
+      <aside className="grow pl-2">
         <div key={id}>{content}</div>
         <div>date</div>
-      </content>
+      </aside>
 
       <div className="mx-2 cursor-pointer" onClick={onClickFaviroites}>
         <HeartSvg filled={isFaviroites} />

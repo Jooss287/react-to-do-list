@@ -21,7 +21,7 @@ const TodoFooter = ({}) => {
       <div className="h-14 p-2 rounded-md flex space-x-2 hover:bg-content-box-hover items-center bg-content-box">
         <span className="text-2xl justify-self-center mr-2 pl-2">
           <svg
-            class="w-4 h-4 text-gray-800 dark:text-white"
+            className="w-4 h-4 text-gray-800 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -29,9 +29,9 @@ const TodoFooter = ({}) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="3"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="3"
               d="M9 1v16M1 9h16"
             />
           </svg>
@@ -46,7 +46,7 @@ const TodoFooter = ({}) => {
         ></input>
         <span className="text-2xl justify-self-center ml-2 opacity-70 hover:opacity-90">
           <svg
-            class="w-5 h-5 text-gray-800 dark:text-white"
+            className="w-5 h-5 text-gray-800 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -60,7 +60,7 @@ const TodoFooter = ({}) => {
         </span>
         <span className="text-2xl justify-self-center ml-2 opacity-70 hover:opacity-90">
           <svg
-            class="w-5 h-5 text-gray-800 dark:text-white"
+            className="w-5 h-5 text-gray-800 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -68,16 +68,16 @@ const TodoFooter = ({}) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m9.046 3.59-.435-2.324m.435 2.324a5.338 5.338 0 0 1 6.033 4.333l.331 1.77c.439 2.344 2.383 2.587 2.599 3.76.11.586.22 1.171-.309 1.271L5 17.101c-.529.1-.639-.488-.749-1.074-.219-1.172 1.506-2.102 1.067-4.447l-.331-1.769a5.338 5.338 0 0 1 4.059-6.22Zm-7.13 4.602a8.472 8.472 0 0 1 2.17-5.048m2.646 13.633A3.472 3.472 0 0 0 13.46 16l.089-.5-6.817 1.277Z"
             />
           </svg>
         </span>
         <span className="text-2xl justify-self-center ml-2 opacity-70 hover:opacity-90">
           <svg
-            class="w-5 h-5 text-gray-800 dark:text-white"
+            className="w-5 h-5 text-gray-800 dark:text-white"
             aria-hidden="true"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -85,9 +85,9 @@ const TodoFooter = ({}) => {
           >
             <path
               stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
               d="m1 14 3-3m-3 3 3 3m-3-3h16v-3m2-7-3 3m3-3-3-3m3 3H3v3"
             />
           </svg>

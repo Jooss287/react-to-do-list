@@ -3,7 +3,7 @@ const AccordianSvg = (fold) => {
     <span className="ml-3 mr-2">
       {fold ? (
         <svg
-          class={`w-4 h-4 text-gray-800 dark:text-white`}
+          className={`w-4 h-4 text-gray-800 dark:text-white`}
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -11,15 +11,15 @@ const AccordianSvg = (fold) => {
         >
           <path
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="m1 13 5.7-5.326a.909.909 0 0 0 0-1.348L1 1"
           />
         </svg>
       ) : (
         <svg
-          class="w-4 h-4 text-gray-800 dark:text-white"
+          className="w-4 h-4 text-gray-800 dark:text-white"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -27,9 +27,9 @@ const AccordianSvg = (fold) => {
         >
           <path
             stroke="currentColor"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
             d="m1 1 5.326 5.7a.909.909 0 0 0 1.348 0L13 1"
           />
         </svg>

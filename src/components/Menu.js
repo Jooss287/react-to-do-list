@@ -65,7 +65,7 @@ const Menu = ({ note }) => {
         >
           <span className="text-2xl justify-self-center grow-0">
             <svg
-              class="w-4 h-4 text-gray-800 dark:text-white"
+              className="w-4 h-4 text-gray-800 dark:text-white"
               aria-hidden="true"
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -73,9 +73,9 @@ const Menu = ({ note }) => {
             >
               <path
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="3"
                 d="M9 1v16M1 9h16"
               />
             </svg>
