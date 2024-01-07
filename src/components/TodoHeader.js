@@ -1,7 +1,16 @@
-const Header = ({ listName }) => {
+import { useEffect, useState } from "react";
+
+const Header = ({ note }) => {
+  const [noteTitle, setNoteTitle] = useState("Unknown");
+
+  useEffect(() => {
+    if (!note || !("noteTitle" in note)) return;
+    setNoteTitle(note.noteTitle);
+  }, [note]);
+
   return (
     <header className="App-header h-24 flex flex-row bg-content-bg pl-10 p-5 space-x-4 grow-0">
-      <h1 className="text-3xl font-bold underline grow">{listName}</h1>
+      <h1 className="text-3xl font-bold underline grow">{noteTitle}</h1>
       <button className="">
         <svg
           className="w-6 h-6 text-gray-800 dark:text-white"
@@ -35,7 +44,7 @@ const Header = ({ listName }) => {
 };
 
 Header.defaultProps = {
-  listName: "Unknown",
+  noteTitle: "Unknown",
 };
 
 export default Header;

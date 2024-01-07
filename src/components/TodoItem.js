@@ -26,7 +26,7 @@ const TodoItem = ({ id, content, isComplete, isFaviroites }) => {
       </aside>
 
       <div className="mx-2 cursor-pointer" onClick={onClickFaviroites}>
-        <HeartSvg filled={isFaviroites} />
+        <HeartSvg filled={isFaviroites} size={6} />
       </div>
     </div>
   );

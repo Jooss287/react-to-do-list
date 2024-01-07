@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { TodoListStateContext } from "../App";
+import { EditSvg, TrashSvg } from "../icon_components/SvgLists";
 
 const initFilter = ["오늘 할 일", "중요", "계획된 일정", "작업"];
-const initTitle = ["새 목록(최하단 위치)", "새 목록"];
 
 const Menu = ({ note }) => {
   const titleRef = useRef();
@@ -39,21 +39,23 @@ const Menu = ({ note }) => {
       </div>
       <div className="justify-self-center border-b-2 border-dashed border-neutral-400 w-full h-2" />
       <div className="h-full grow items-center space-y-1">
-        {initTitle.map((item) => (
-          <div
-            className="h-9 w-full px-2 hover:bg-menu-color-hover rounded flex items-center"
-            key={item}
-          >
-            {item}
-          </div>
-        ))}
         {note.map((item) => (
           <div
-            className="h-9 w-full px-2 hover:bg-menu-color-hover rounded flex items-center cursor-pointer"
+            className="flex flex-row w-full items-center hover:bg-menu-color-hover rounded cursor-pointer"
             key={item.noteId}
-            onClick={() => changeCurrentNote(item.noteId)}
           >
-            {item.noteTitle}
+            <div
+              className="grow h-9 px-2 flex items-center "
+              onClick={() => changeCurrentNote(item.noteId)}
+            >
+              {item.noteTitle}
+            </div>
+            <span className="justify-end mr-1 opacity-50 hover:opacity-90">
+              <EditSvg size={5} />
+            </span>
+            <span className="justify-end mr-1 opacity-50 hover:opacity-90">
+              <TrashSvg size={5} />
+            </span>
           </div>
         ))}
       </div>
@@ -89,7 +91,7 @@ const Menu = ({ note }) => {
             value={title}
           ></input>
           <button
-            className="rounded bg-indigo-300 w-10 grow-0"
+            className="rounded bg-content-btn w-10 grow-0 h-4/5"
             onClick={submitTitle}
           >
             추가
@@ -99,5 +101,4 @@ const Menu = ({ note }) => {
     </menu>
   );
 };
-
 export default Menu;

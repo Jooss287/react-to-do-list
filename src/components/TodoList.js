@@ -8,7 +8,7 @@ const TodoList = ({ data }) => {
   const [completeFilter, setCompleteFilter] = useState(false);
 
   useEffect(() => {
-    if (!data) return;
+    if (!data || !("todoContent" in data)) return;
 
     const currentData = data.todoContent;
     setNotCompleteTodo(

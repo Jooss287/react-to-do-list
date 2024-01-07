@@ -44,7 +44,7 @@ const TodoFooter = ({}) => {
             setContent(e.target.value);
           }}
         ></input>
-        <span className="text-2xl justify-self-center ml-2 opacity-70 hover:opacity-90">
+        <span className="text-2xl justify-self-center ml-2 opacity-50 hover:opacity-90">
           <svg
             className="w-5 h-5 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -58,7 +58,7 @@ const TodoFooter = ({}) => {
             />
           </svg>
         </span>
-        <span className="text-2xl justify-self-center ml-2 opacity-70 hover:opacity-90">
+        <span className="text-2xl justify-self-center ml-2 opacity-50 hover:opacity-90">
           <svg
             className="w-5 h-5 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -75,7 +75,7 @@ const TodoFooter = ({}) => {
             />
           </svg>
         </span>
-        <span className="text-2xl justify-self-center ml-2 opacity-70 hover:opacity-90">
+        <span className="text-2xl justify-self-center ml-2 opacity-50 hover:opacity-90">
           <svg
             className="w-5 h-5 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -93,7 +93,7 @@ const TodoFooter = ({}) => {
           </svg>
         </span>
         <button
-          className="ml-2 rounded bg-indigo-300 w-16"
+          className="ml-2 rounded bg-content-btn w-16 h-4/5"
           onClick={submitTodo}
         >
           추가
