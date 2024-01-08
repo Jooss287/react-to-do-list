@@ -1,12 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { TodoListDispatchContext } from "../App";
 
-const Header = ({ note }) => {
+const Header = () => {
   const [noteTitle, setNoteTitle] = useState("Unknown");
+  const { note, currentId } = useContext(TodoListDispatchContext);
 
   useEffect(() => {
-    if (!note || !("noteTitle" in note)) return;
-    setNoteTitle(note.noteTitle);
-  }, [note]);
+    const foundNote = note.find((item) => item.noteId === currentId);
+
+    if (foundNote) {
+      setNoteTitle(foundNote.noteTitle);
+    }
+  }, [note, currentId]);
 
   return (
     <header className="App-header h-24 flex flex-row bg-content-bg pl-10 p-5 space-x-4 grow-0">

@@ -1,4 +1,3 @@
-import { BrowserRouter, Routes } from "react-router-dom";
 import "./App.css";
 import Header from "./components/TodoHeader";
 import Menu from "./components/Menu";
@@ -127,14 +126,14 @@ export const TodoListDispatchContext = React.createContext();
 export const TodoListStateContext = React.createContext();
 
 function App() {
-  const [data, dispatch] = useReducer(reducer, []);
+  const [note, dispatch] = useReducer(reducer, []);
   const [currentId, setCurrentId] = useState(1);
 
   const onAddNote = (noteTitle) => {
     dispatch({
       type: "ADD_NOTE",
       payload: {
-        noteId: data.length + 1,
+        noteId: note.length + 1,
         noteTitle,
         todoContent: [],
       },
@@ -200,17 +199,17 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {}, [data]);
+  useEffect(() => {}, [note]);
 
   const GetCurrentNote = () => {
-    if (!data || data.length === 0) {
+    if (!note || note.length === 0) {
       return undefined;
     }
-    return data.find((item) => item.noteId === currentId);
+    return note.find((item) => item.noteId === currentId);
   };
 
   return (
-    <TodoListDispatchContext.Provider value={data}>
+    <TodoListDispatchContext.Provider value={{ note, currentId }}>
       <TodoListStateContext.Provider
         value={{
           onAddNote,
@@ -220,18 +219,14 @@ function App() {
           onChangeFaviroites,
         }}
       >
-        <BrowserRouter>
-          <div className="App bg-slate-100 h-full flex">
-            {/* <Routes> */}
-            <Menu note={data} />
-            <article className="Article h-screen w-full flex flex-col">
-              <Header />
-              <TodoList data={GetCurrentNote()} />
-              <TodoFooter />
-            </article>
-            {/* </Routes> */}
-          </div>
-        </BrowserRouter>
+        <div className="App bg-slate-100 h-full flex">
+          <Menu />
+          <article className="Article h-screen w-full flex flex-col">
+            <Header />
+            <TodoList />
+            <TodoFooter />
+          </article>
+        </div>
       </TodoListStateContext.Provider>
     </TodoListDispatchContext.Provider>
   );

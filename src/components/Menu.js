@@ -1,13 +1,14 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { TodoListStateContext } from "../App";
+import { TodoListDispatchContext, TodoListStateContext } from "../App";
 import { EditSvg, TrashSvg } from "../icon_components/SvgLists";
 
 const initFilter = ["오늘 할 일", "중요", "계획된 일정", "작업"];
 
-const Menu = ({ note }) => {
+const Menu = () => {
   const titleRef = useRef();
   const [title, setTitle] = useState("");
   const { onAddNote, onChangeNote } = useContext(TodoListStateContext);
+  const { note } = useContext(TodoListDispatchContext);
 
   const submitTitle = () => {
     if (title.length < 1) {
