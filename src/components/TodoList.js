@@ -18,7 +18,7 @@ const TodoList = () => {
   }, [note, currentId]);
 
   return (
-    <div className="TodoList pt-6 h-4/6 w-full p-10 bg-content-bg flex-col grow">
+    <div className="TodoList pt-6 h-4/6 w-full p-10 bg-content-bg flex-col grow overflow-y-auto">
       <div className="flex flex-col space-y-1 grow">
         {notCompleteTodo.map((item) => (
           <TodoItem key={item.id} {...item} />

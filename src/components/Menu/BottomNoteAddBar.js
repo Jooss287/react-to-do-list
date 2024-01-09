@@ -17,9 +17,9 @@ const BottomNoteAddBar = () => {
   };
 
   return (
-    <div className="glow-0 h-16 flex items-center">
+    <div className="glow-0 h-14 flex items-center">
       <div
-        className="h-14 p-2 w-full space-x-2 rounded-md flex hover:bg-content-box-hover items-center bg-content-box"
+        className="h-12 p-2 w-full space-x-2 rounded-md flex hover:bg-content-box-hover items-center bg-content-box"
         onClick={() => titleRef.current.focus()}
       >
         <span className="text-2xl justify-self-center grow-0">
@@ -42,18 +42,23 @@ const BottomNoteAddBar = () => {
         <input
           className="placeholder:italic outline-none grow bg-transparent min-w-16"
           placeholder="새 목록 추가"
+          value={title}
           ref={titleRef}
           onChange={(e) => {
             setTitle(e.target.value);
           }}
-          value={title}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              submitTitle();
+            }
+          }}
         ></input>
-        <button
+        {/* <button
           className="rounded bg-content-btn w-10 grow-0 h-4/5"
           onClick={submitTitle}
         >
           추가
-        </button>
+        </button> */}
       </div>
     </div>
   );

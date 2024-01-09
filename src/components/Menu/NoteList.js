@@ -7,7 +7,8 @@ const NoteList = () => {
   const [isEdit, setIsEdit] = useState(false);
   const [editNoteTitle, setEditNoteTitle] = useState("");
   const [noteId, setNoteId] = useState(0);
-  const { onChangeNote, onEditNoteTitle } = useContext(TodoListStateContext);
+  const { onChangeNote, onEditNoteTitle, onDeleteNote } =
+    useContext(TodoListStateContext);
   const { note } = useContext(TodoListDispatchContext);
 
   const setEditMode = (noteId, editMode) => {
@@ -22,6 +23,13 @@ const NoteList = () => {
 
     setEditNoteTitle("");
     setIsEdit(false);
+  };
+
+  const onDeleteNoteAlert = (noteId) => {
+    if (!window.confirm("정말 삭제하시겠습니까?")) {
+      return;
+    }
+    onDeleteNote(noteId);
   };
 
   useEffect(() => {
@@ -65,7 +73,10 @@ const NoteList = () => {
           >
             <EditSvg size={5} />
           </span>
-          <span className="justify-end mr-1 opacity-50 hover:opacity-90">
+          <span
+            className="justify-end mr-1 opacity-50 hover:opacity-90"
+            onClick={() => onDeleteNoteAlert(item.noteId)}
+          >
             <TrashSvg size={5} />
           </span>
         </div>

@@ -4,7 +4,9 @@ import Menu from "./components/Menu/Menu";
 import TodoList from "./components/TodoList";
 import React, { useEffect, useReducer, useState } from "react";
 import TodoFooter from "./components/TodoFooter";
+import { NoteReducer } from "./components/Reducer/NoteReducer";
 
+const dummyCurrentId = 1;
 const dummyList = [
   {
     noteId: 1,
@@ -44,98 +46,11 @@ const dummyList = [
   },
 ];
 
-const dummyCurrentId = 1;
-
-const GetCurrentNote = (note, noteId) => {
-  if (!note) {
-    return undefined;
-  }
-  return note.find((item) => item.noteId === noteId);
-};
-
-const GetCurrentContents = (note, noteId, contentId) => {
-  let currentNote = GetCurrentNote(note, noteId);
-  if (!currentNote) {
-    return undefined;
-  }
-  return currentNote.todoContent.find((it) => it.id === contentId);
-};
-
-const reducer = (state, action) => {
-  let newState = [];
-  switch (action.type) {
-    case "INIT":
-      return action.payload;
-    case "ADD_NOTE":
-      if (state.find((item) => item.noteId === action.payload.noteId)) {
-        return state;
-      }
-      newState = [...state, action.payload];
-      break;
-    case "CHANGE_NOTE_TITLE": {
-      state.map((item) => {
-        if (item.noteId === action.payload.noteId) {
-          item.noteTitle = action.payload.noteTitle;
-        }
-      });
-      newState = JSON.parse(JSON.stringify(state));
-      break;
-    }
-    case "ADD_CONTENTS": {
-      let currentNote = GetCurrentNote(state, action.currentId);
-      let content = GetCurrentContents(
-        state,
-        action.currentId,
-        action.payload.id
-      );
-      if (!currentNote || content) {
-        return state;
-      }
-      currentNote.todoContent.push(action.payload);
-      newState = JSON.parse(JSON.stringify(state));
-      break;
-    }
-    case "CHANGE_COMPLETE": {
-      let content = GetCurrentContents(
-        state,
-        action.currentId,
-        action.payload.id
-      );
-      if (!content) {
-        return state;
-      }
-      content.isComplete = action.payload.isComplete;
-      newState = JSON.parse(JSON.stringify(state));
-      break;
-    }
-    case "CHANGE_FAVIROITES": {
-      let content = GetCurrentContents(
-        state,
-        action.currentId,
-        action.payload.id
-      );
-      if (!content) {
-        return state;
-      }
-      content.isFaviroites = action.payload.isFaviroites;
-      newState = JSON.parse(JSON.stringify(state));
-      break;
-    }
-    // case "DELETE":
-    //   return state.filter((item) => item.id !== action.payload);
-    default:
-      return state;
-  }
-
-  localStorage.setItem("todoNote", JSON.stringify(newState));
-  return newState;
-};
-
 export const TodoListDispatchContext = React.createContext();
 export const TodoListStateContext = React.createContext();
 
 function App() {
-  const [note, dispatch] = useReducer(reducer, []);
+  const [note, dispatch] = useReducer(NoteReducer, []);
   const [currentId, setCurrentId] = useState(1);
 
   const onAddNote = (noteTitle) => {
@@ -163,9 +78,15 @@ function App() {
     });
   };
 
+  const onDeleteNote = (noteId) => {
+    dispatch({
+      type: "DELETE_NOTE",
+      payload: noteId,
+    });
+  };
+
   const onAddContent = (content, date) => {
     const currentNote = GetCurrentNote();
-    console.log("onAddContent");
     dispatch({
       type: "ADD_CONTENTS",
       currentId: currentId,
@@ -218,8 +139,6 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {}, [note]);
-
   const GetCurrentNote = () => {
     if (!note || note.length === 0) {
       return undefined;
@@ -234,6 +153,7 @@ function App() {
           onAddNote,
           onChangeNote,
           onEditNoteTitle,
+          onDeleteNote,
           onAddContent,
           onChangeComplete,
           onChangeFaviroites,

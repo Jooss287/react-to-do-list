@@ -1,7 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { TodoListStateContext } from "../App";
 
-const TodoFooter = ({}) => {
+const TodoFooter = () => {
   const contentRef = useRef();
   const [content, setContent] = useState("");
   const { onAddContent } = useContext(TodoListStateContext);
@@ -18,7 +18,7 @@ const TodoFooter = ({}) => {
   return (
     <footer className="Footer min-h-36 bg-content-bg px-10 pt-8 p-2 w-full flex flex-col grow-0">
       <div className="h-14 p-2 rounded-md flex space-x-2 hover:bg-content-box-hover items-center bg-content-box">
-        <span className="text-2xl justify-self-center mr-2 pl-2">
+        <span className="text-2xl justify-self-center mx-2">
           <svg
             className="w-4 h-4 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -39,6 +39,7 @@ const TodoFooter = ({}) => {
           className="placeholder:italic outline-none grow bg-transparent"
           placeholder="작업 추가"
           ref={contentRef}
+          value={content}
           onChange={(e) => {
             setContent(e.target.value);
           }}
@@ -79,7 +80,7 @@ const TodoFooter = ({}) => {
             />
           </svg>
         </span>
-        <span className="text-2xl justify-self-center ml-2 opacity-50 hover:opacity-90">
+        <span className="text-2xl justify-self-center ml-2 pr-2 opacity-50 hover:opacity-90">
           <svg
             className="w-5 h-5 text-gray-800 dark:text-white"
             aria-hidden="true"
@@ -96,12 +97,12 @@ const TodoFooter = ({}) => {
             />
           </svg>
         </span>
-        <button
+        {/* <button
           className="ml-2 rounded bg-content-btn w-16 h-4/5"
           onClick={submitTodo}
         >
           추가
-        </button>
+        </button> */}
       </div>
     </footer>
   );
