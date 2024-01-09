@@ -8,12 +8,11 @@ const TodoFooter = ({}) => {
 
   const submitTodo = () => {
     if (content.length < 1) {
-      //   contentRef.current.focus();
       return;
     }
 
     onAddContent(content);
-    console.log(content);
+    setContent("");
   };
 
   return (
@@ -42,6 +41,11 @@ const TodoFooter = ({}) => {
           ref={contentRef}
           onChange={(e) => {
             setContent(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              submitTodo();
+            }
           }}
         ></input>
         <span className="text-2xl justify-self-center ml-2 opacity-50 hover:opacity-90">

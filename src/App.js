@@ -1,6 +1,6 @@
 import "./App.css";
 import Header from "./components/TodoHeader";
-import Menu from "./components/Menu";
+import Menu from "./components/Menu/Menu";
 import TodoList from "./components/TodoList";
 import React, { useEffect, useReducer, useState } from "react";
 import TodoFooter from "./components/TodoFooter";
@@ -72,6 +72,15 @@ const reducer = (state, action) => {
       }
       newState = [...state, action.payload];
       break;
+    case "CHANGE_NOTE_TITLE": {
+      state.map((item) => {
+        if (item.noteId === action.payload.noteId) {
+          item.noteTitle = action.payload.noteTitle;
+        }
+      });
+      newState = JSON.parse(JSON.stringify(state));
+      break;
+    }
     case "ADD_CONTENTS": {
       let currentNote = GetCurrentNote(state, action.currentId);
       let content = GetCurrentContents(
@@ -144,6 +153,16 @@ function App() {
     setCurrentId(id);
   };
 
+  const onEditNoteTitle = (noteId, noteTitle) => {
+    dispatch({
+      type: "CHANGE_NOTE_TITLE",
+      payload: {
+        noteId,
+        noteTitle,
+      },
+    });
+  };
+
   const onAddContent = (content, date) => {
     const currentNote = GetCurrentNote();
     console.log("onAddContent");
@@ -214,6 +233,7 @@ function App() {
         value={{
           onAddNote,
           onChangeNote,
+          onEditNoteTitle,
           onAddContent,
           onChangeComplete,
           onChangeFaviroites,
