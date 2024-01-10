@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import TodoItem from "./TodoItem";
-import AccordianSvg from "../icon_components/AccordianSvg";
-import { TodoListDispatchContext } from "../App";
+import AccordianSvg from "../../icon_components/AccordianSvg";
+import { TodoListDispatchContext } from "../../App";
 
 const TodoList = () => {
   const [notCompleteTodo, setNotCompleteTodo] = useState([]);

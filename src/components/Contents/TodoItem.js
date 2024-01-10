@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { TodoListStateContext } from "../App";
-import CheckboxSvg from "../icon_components/CheckboxSvg";
-import HeartSvg from "../icon_components/HeartSvg";
+import { TodoListStateContext } from "../../App";
+import CheckboxSvg from "../../icon_components/CheckboxSvg";
+import HeartSvg from "../../icon_components/HeartSvg";
 
 const TodoItem = ({ id, content, isComplete, isFaviroites }) => {
   const { onChangeComplete, onChangeFaviroites } =

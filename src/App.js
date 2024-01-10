@@ -1,9 +1,9 @@
 import "./App.css";
-import Header from "./components/TodoHeader";
+import TodoHeader from "./components/Contents/TodoHeader";
 import Menu from "./components/Menu/Menu";
-import TodoList from "./components/TodoList";
+import TodoList from "./components/Contents/TodoList";
 import React, { useEffect, useReducer, useState } from "react";
-import TodoFooter from "./components/TodoFooter";
+import TodoFooter from "./components/Contents/TodoFooter";
 import { NoteReducer } from "./components/Reducer/NoteReducer";
 
 const dummyCurrentId = 1;
@@ -162,7 +162,7 @@ function App() {
         <div className="App bg-slate-100 h-full flex">
           <Menu />
           <article className="Article h-screen w-full flex flex-col">
-            <Header />
+            <TodoHeader />
             <TodoList />
             <TodoFooter />
           </article>

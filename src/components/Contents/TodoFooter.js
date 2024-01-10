@@ -1,5 +1,5 @@
 import React, { useContext, useRef, useState } from "react";
-import { TodoListStateContext } from "../App";
+import { TodoListStateContext } from "../../App";
 
 const TodoFooter = () => {
   const contentRef = useRef();
