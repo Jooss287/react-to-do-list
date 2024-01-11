@@ -15,8 +15,16 @@ const TodoItem = ({ id, content, isComplete, isFaviroites }) => {
     onChangeFaviroites(id, !isFaviroites);
   };
 
+  const handleRightClick = (e) => {
+    e.preventDefault();
+    console.log("right click");
+  };
+
   return (
-    <div className=" bg-content-box hover:bg-content-box-hover h-14 rounded-md p-2 w-full flex items-center">
+    <div
+      className=" bg-content-box hover:bg-content-box-hover h-14 rounded-md p-2 w-full flex items-center"
+      onContextMenu={handleRightClick}
+    >
       <div className="mx-2 cursor-pointer" onClick={onClickComplete}>
         <CheckboxSvg checked={isComplete} />
       </div>

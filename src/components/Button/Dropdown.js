@@ -21,7 +21,7 @@ const Dropdown = ({ itemsOption, menuBtn, menuItems }) => {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items
-          className={`absolute right-0 z-10 mt-2 w-${itemsOption.width} origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+          className={`absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
         >
           <div className="py-1">
             {menuItems.map((item) => {
@@ -53,7 +53,7 @@ const Dropdown = ({ itemsOption, menuBtn, menuItems }) => {
 
 Dropdown.defaultProps = {
   itemsOption: {
-    width: 56,
+    width: 60,
   },
   menuBtn: "Unknown",
   menuItems: [

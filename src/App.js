@@ -65,6 +65,9 @@ function App() {
   };
 
   const onChangeNote = (id) => {
+    if (id === -1 && note.length !== 0) {
+      id = note[0].noteId;
+    }
     setCurrentId(id);
   };
 

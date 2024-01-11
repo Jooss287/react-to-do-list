@@ -1,6 +1,8 @@
-import { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { TodoListDispatchContext, TodoListStateContext } from "../../App";
 import AddMenu from "./AddMenu";
+
+export const MenuEditContext = React.createContext();
 
 const TodoHeader = () => {
   const titleEditRef = useRef();
@@ -60,7 +62,9 @@ const TodoHeader = () => {
           {currentNote.noteTitle}
         </h1>
       )}
-      <AddMenu />
+      <MenuEditContext.Provider value={{ onEditMode, currentId }}>
+        <AddMenu />
+      </MenuEditContext.Provider>
     </header>
   );
 };
