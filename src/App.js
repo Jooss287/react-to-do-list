@@ -103,6 +103,14 @@ function App() {
     });
   };
 
+  const onDeleteContent = (id) => {
+    dispatch({
+      type: "DELETE_CONTENTS",
+      currentId: currentId,
+      payload: id,
+    });
+  };
+
   const onChangeComplete = (id, isComplete) => {
     dispatch({
       type: "CHANGE_COMPLETE",
@@ -158,6 +166,7 @@ function App() {
           onEditNoteTitle,
           onDeleteNote,
           onAddContent,
+          onDeleteContent,
           onChangeComplete,
           onChangeFaviroites,
         }}

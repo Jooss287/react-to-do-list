@@ -2,8 +2,12 @@ import { useContext } from "react";
 import { TodoListStateContext } from "../../App";
 import CheckboxSvg from "../../icon_components/CheckboxSvg";
 import HeartSvg from "../../icon_components/HeartSvg";
+import { MenuRightBtnContext } from "./TodoList";
 
 const TodoItem = ({ id, content, isComplete, isFaviroites }) => {
+  const { setMenuVisible, setMenuPosition, setMenuTargetId } =
+    useContext(MenuRightBtnContext);
+
   const { onChangeComplete, onChangeFaviroites } =
     useContext(TodoListStateContext);
 
@@ -17,7 +21,10 @@ const TodoItem = ({ id, content, isComplete, isFaviroites }) => {
 
   const handleRightClick = (e) => {
     e.preventDefault();
-    console.log("right click");
+
+    setMenuTargetId(id);
+    setMenuPosition({ x: e.clientX, y: e.clientY });
+    setMenuVisible(true);
   };
 
   return (
