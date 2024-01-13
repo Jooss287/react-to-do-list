@@ -5,7 +5,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const Dropdown = ({ itemsOption, menuBtn, menuItems }) => {
+const Dropdown = ({ itemsOption, menuBtn, menuItems, topMenu }) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
@@ -21,7 +21,10 @@ const Dropdown = ({ itemsOption, menuBtn, menuItems }) => {
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items
-          className={`absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none`}
+          className={classNames(
+            topMenu ? "bottom-full" : "",
+            "absolute right-0 z-10 mt-2 w-32 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          )}
         >
           <div className="py-1">
             {menuItems.map((item) => {
@@ -62,6 +65,7 @@ Dropdown.defaultProps = {
       label: "Unknown",
     },
   ],
+  topMenu: false,
 };
 
 export default Dropdown;

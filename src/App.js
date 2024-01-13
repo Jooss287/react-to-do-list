@@ -14,27 +14,43 @@ const dummyList = [
     todoContent: [
       {
         id: 1,
-        content: "오늘 할 일",
+        content: "할 일 샘플",
         isComplete: true,
         isFaviroites: true,
+        deadLine: new Date(),
       },
       {
         id: 2,
         content: "중요",
         isComplete: true,
         isFaviroites: false,
+        deadLine: (() => {
+          const date = new Date();
+          date.setDate(date.getDate() - 1);
+          return date;
+        })(),
       },
       {
         id: 3,
         content: "계획된 일정",
         isComplete: true,
         isFaviroites: true,
+        deadLine: (() => {
+          const date = new Date();
+          date.setDate(date.getDate() + 1);
+          return date;
+        })(),
       },
       {
         id: 4,
         content: "작업",
         isComplete: true,
         isFaviroites: false,
+        deadLine: (() => {
+          const date = new Date();
+          date.setDate(date.getFullYear() + 1);
+          return date;
+        })(),
       },
       {
         id: 5,
@@ -133,6 +149,17 @@ function App() {
     });
   };
 
+  const setDeadLine = (noteId, id, date) => {
+    dispatch({
+      type: "SET_DEADLINE",
+      currentId: noteId,
+      payload: {
+        id,
+        date,
+      },
+    });
+  };
+
   useEffect(() => {
     let localData = JSON.parse(localStorage.getItem("todoNote"));
     if (!localData) {
@@ -169,6 +196,7 @@ function App() {
           onDeleteContent,
           onChangeComplete,
           onChangeFaviroites,
+          setDeadLine,
         }}
       >
         <div className="App bg-slate-100 h-full flex">

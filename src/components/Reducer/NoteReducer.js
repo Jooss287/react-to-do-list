@@ -119,6 +119,32 @@ export const NoteReducer = (state, action) => {
       );
       break;
     }
+    case "SET_DEADLINE": {
+      newState = JSON.parse(
+        JSON.stringify(
+          state.map((item) => {
+            if (item.noteId === action.currentId) {
+              return {
+                ...item,
+                todoContent: item.todoContent.map((it) => {
+                  if (it.id === action.payload.id) {
+                    return {
+                      ...it,
+                      deadLine: action.payload.date,
+                    };
+                  } else {
+                    return it;
+                  }
+                }),
+              };
+            } else {
+              return item;
+            }
+          })
+        )
+      );
+      break;
+    }
     default:
       return state;
   }
