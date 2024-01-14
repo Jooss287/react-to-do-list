@@ -3,7 +3,7 @@ import { TodoListStateContext } from "../../App";
 import CheckboxSvg from "../../icon_components/CheckboxSvg";
 import HeartSvg from "../../icon_components/HeartSvg";
 import { MenuRightBtnContext } from "./TodoList";
-import { CalenderSvg, SunSvg } from "../../icon_components/SvgLists";
+import { CalendarSvg, SunSvg } from "../../icon_components/SvgLists";
 
 const TodoItem = ({ id, content, isComplete, isFaviroites, deadLine }) => {
   const { setMenuVisible, setMenuPosition, setMenuTargetId } =
@@ -86,19 +86,19 @@ const TodoItem = ({ id, content, isComplete, isFaviroites, deadLine }) => {
                 <SunSvg size={4} /> 오늘 할 일
               </span>
               <span className="text-blue-700 flex">
-                <CalenderSvg size={4} /> 오늘
+                <CalendarSvg size={4} /> 오늘
               </span>
             </span>
           )}
           {!isTodayTodo && !isOverDue && deadLineString && (
             <span className="text-gray-500 flex">
-              <CalenderSvg size={4} />
+              <CalendarSvg size={4} />
               {deadLineString}
             </span>
           )}
           {!isTodayTodo && isOverDue && (
             <span className="text-red-500 flex">
-              <CalenderSvg size={4} />
+              <CalendarSvg size={4} />
               {deadLineString}
             </span>
           )}

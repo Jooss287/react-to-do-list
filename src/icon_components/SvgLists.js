@@ -59,7 +59,7 @@ export const DotsSvg = ({ size }) => (
   </svg>
 );
 
-export const CalenderSvg = ({ size }) => (
+export const CalendarSvg = ({ size }) => (
   <svg
     className={`w-${size} h-${size} text-gray-800 dark:text-white`}
     aria-hidden="true"
