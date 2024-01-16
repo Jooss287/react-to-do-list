@@ -17,14 +17,14 @@ const dummyList = [
         content: "할 일 샘플",
         isComplete: true,
         isFaviroites: true,
-        deadLine: new Date(),
+        deadline: new Date(),
       },
       {
         id: 2,
         content: "중요",
         isComplete: true,
         isFaviroites: false,
-        deadLine: (() => {
+        deadline: (() => {
           const date = new Date();
           date.setDate(date.getDate() - 1);
           return date;
@@ -35,7 +35,7 @@ const dummyList = [
         content: "계획된 일정",
         isComplete: true,
         isFaviroites: true,
-        deadLine: (() => {
+        deadline: (() => {
           const date = new Date();
           date.setDate(date.getDate() + 1);
           return date;
@@ -46,7 +46,7 @@ const dummyList = [
         content: "작업",
         isComplete: true,
         isFaviroites: false,
-        deadLine: (() => {
+        deadline: (() => {
           const date = new Date();
           date.setDate(date.getFullYear() + 1);
           return date;
@@ -57,6 +57,7 @@ const dummyList = [
         content: "새 목록(최하단 위치)",
         isComplete: false,
         isFaviroites: true,
+        deadline: undefined,
       },
     ],
   },
@@ -104,7 +105,7 @@ function App() {
     });
   };
 
-  const onAddContent = (content, date) => {
+  const onAddContent = (content, deadline, alert, repeat) => {
     const currentNote = GetCurrentNote();
     dispatch({
       type: "ADD_CONTENTS",
@@ -114,7 +115,9 @@ function App() {
         content,
         isComplete: false,
         isFaviroites: false,
-        date,
+        deadline,
+        alert,
+        repeat,
       },
     });
   };
@@ -145,17 +148,6 @@ function App() {
       payload: {
         id,
         isFaviroites,
-      },
-    });
-  };
-
-  const setDeadLine = (noteId, id, date) => {
-    dispatch({
-      type: "SET_DEADLINE",
-      currentId: noteId,
-      payload: {
-        id,
-        date,
       },
     });
   };
@@ -196,7 +188,6 @@ function App() {
           onDeleteContent,
           onChangeComplete,
           onChangeFaviroites,
-          setDeadLine,
         }}
       >
         <div className="App bg-slate-100 h-full flex">

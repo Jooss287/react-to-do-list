@@ -5,14 +5,14 @@ import HeartSvg from "../../icon_components/HeartSvg";
 import { MenuRightBtnContext } from "./TodoList";
 import { CalendarSvg, SunSvg } from "../../icon_components/SvgLists";
 
-const TodoItem = ({ id, content, isComplete, isFaviroites, deadLine }) => {
+const TodoItem = ({ id, content, isComplete, isFaviroites, deadline }) => {
   const { setMenuVisible, setMenuPosition, setMenuTargetId } =
     useContext(MenuRightBtnContext);
 
   const { onChangeComplete, onChangeFaviroites } =
     useContext(TodoListStateContext);
 
-  const [deadLineString, setDeadLineString] = useState("");
+  const [deadlineString, setDeadLineString] = useState("");
   const [isTodayTodo, setIsTodayTodo] = useState(false);
   const [isOverDue, setIsOverDue] = useState(false);
 
@@ -35,37 +35,37 @@ const TodoItem = ({ id, content, isComplete, isFaviroites, deadLine }) => {
   const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
   useEffect(() => {
-    if (deadLine) {
-      let deadLineString = "";
+    if (deadline) {
+      let deadlineString = "";
       const today = new Date();
-      const deadLineDate = new Date(deadLine);
+      const deadlineDate = new Date(deadline);
 
       if (
         today.toISOString().slice(0, 10) ===
-        deadLineDate.toISOString().slice(0, 10)
+        deadlineDate.toISOString().slice(0, 10)
       ) {
-        deadLineString = "오늘";
+        deadlineString = "오늘";
         setIsTodayTodo(true);
       } else {
         if (
           today.toISOString().slice(0, 10) >
-          deadLineDate.toISOString().slice(0, 10)
+          deadlineDate.toISOString().slice(0, 10)
         ) {
           setIsOverDue(true);
         }
 
-        const deadLineYear =
-          today.getFullYear() === deadLineDate.getFullYear()
+        const deadlineYear =
+          today.getFullYear() === deadlineDate.getFullYear()
             ? ""
-            : `${deadLineDate.getFullYear()}년`;
-        const deadLineMonth = deadLineDate.getMonth() + 1;
-        const deadLineDay = deadLineDate.getDate();
-        const deadLineDayOfWeek = dayOfWeek[deadLineDate.getDay()];
+            : `${deadlineDate.getFullYear()}년`;
+        const deadlineMonth = deadlineDate.getMonth() + 1;
+        const deadlineDay = deadlineDate.getDate();
+        const deadlineDayOfWeek = dayOfWeek[deadlineDate.getDay()];
 
-        deadLineString = `${deadLineYear}${deadLineMonth}월${deadLineDay}일 ${deadLineDayOfWeek}`;
+        deadlineString = `${deadlineYear}${deadlineMonth}월${deadlineDay}일 ${deadlineDayOfWeek}`;
       }
 
-      setDeadLineString(deadLineString);
+      setDeadLineString(deadlineString);
     }
   }, []);
 
@@ -90,16 +90,16 @@ const TodoItem = ({ id, content, isComplete, isFaviroites, deadLine }) => {
               </span>
             </span>
           )}
-          {!isTodayTodo && !isOverDue && deadLineString && (
+          {!isTodayTodo && !isOverDue && deadlineString && (
             <span className="text-gray-500 flex">
               <CalendarSvg size={4} />
-              {deadLineString}
+              {deadlineString}
             </span>
           )}
           {!isTodayTodo && isOverDue && (
             <span className="text-red-500 flex">
               <CalendarSvg size={4} />
-              {deadLineString}
+              {deadlineString}
             </span>
           )}
         </div>
