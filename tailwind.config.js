@@ -15,6 +15,7 @@ module.exports = {
         "content-box-hover": "#ECF0F1",
         "content-btn": "#ADD8E6",
         "content-btn-hover": "#2980b9",
+        "btn-color": "#1e293b",
       },
     },
     fontFamily: {
