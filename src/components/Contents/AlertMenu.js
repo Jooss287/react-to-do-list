@@ -10,7 +10,7 @@ const AlertMenu = () => {
   const moment = require("moment");
   const calendarRef = useRef();
   const [isCalendarMode, setIscalendarMode] = useState(false);
-  const [value, setValue] = useState(new Date());
+  const [value, setValue] = useState(new moment());
   const { alert, setAlert } = useContext(AddContentContext);
   const [currentAlertString, setCurrentAlertString] = useState("");
   const [currentCalendarString, setCurrentCalendarString] = useState("");
@@ -33,13 +33,18 @@ const AlertMenu = () => {
   ];
 
   const calendarOnChange = (date) => {
-    setValue(date);
+    const newTime = value;
+    newTime.set({
+      year: date.getFullYear(),
+      month: date.getMonth(),
+      date: date.getDate(),
+    });
+    setValue(newTime);
   };
 
   const timeOnChange = (time) => {
     const newTime = value;
-    newTime.setHours(time.substring(0, 2));
-    newTime.setMinutes(time.substring(2, 4));
+    newTime.set({ hour: time.substring(0, 2), minute: time.substring(2, 4) });
     setValue(newTime);
   };
 
@@ -103,7 +108,7 @@ const AlertMenu = () => {
             <button
               className="grow border-2 rounded-md bg-btn-color text-menu-color"
               onClick={() => {
-                setAlert(new Date(value));
+                setAlert(new moment(value));
                 setIscalendarMode(false);
               }}
             >
